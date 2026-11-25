@@ -506,11 +506,11 @@ ${gerarLixo()}
 local ${vFn}=loadstring(table.concat(${vOut}))
 
 if ${vFn} then
-${vFn}()
+${vFn}() 
 end;
 `;
 
-    outputBox.value = final.trim();
+    outputBox.value = final.replace(/\s+/g, " ").trim();
     statusBadge.textContent = "Luau Protegido!";
 
   } catch (erro) {
