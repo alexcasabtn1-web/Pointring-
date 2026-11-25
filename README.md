@@ -1,6 +1,5 @@
 # Pointring++
 
-# Pointring++
 
 **Pointring++** (**Po**int + **int** + st**ring** + **++**) is a custom-designed esoteric encoding language and **Luau obfuscator** built for Roblox. 
 
