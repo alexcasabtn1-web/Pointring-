@@ -4,7 +4,25 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pointring++ | Luau Obfuscator</title>
+
+  <title>Obfuscador Pointring++</title>
+
+  <!-- Descrição do site -->
+  <meta name="description" content="Misturando tudo para criar o melhor obfuscador. Conheça o Pointring++, o obfuscador de Luau para Roblox." />
+
+  <!-- Discord Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Obfuscador Pointring++" />
+  <meta property="og:description" content="Misturando tudo para criar o melhor obfuscador." />
+  <meta property="og:url" content="https://alexcasabtn1-web.github.io/Pointring-/" />
+
+  <!-- Cor do preview -->
+  <meta name="theme-color" content="#7c3aed" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Obfuscador Pointring++" />
+  <meta name="twitter:description" content="Misturando tudo para criar o melhor obfuscador." />
 
   <style>
     * {
@@ -16,7 +34,7 @@
 
     body {
       min-height: 100vh;
-      color: #fff;
+      color: #ffffff;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -45,10 +63,10 @@
       background: rgba(17, 19, 38, 0.55);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(255,255,255,0.14);
+      border: 1px solid rgba(255, 255, 255, 0.14);
       border-radius: 24px;
       padding: 32px;
-      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.6);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
     }
 
     header {
@@ -103,8 +121,8 @@
     textarea {
       width: 100%;
       height: 240px;
-      background: rgba(9,11,24,0.65);
-      border: 1px solid rgba(147,197,253,0.22);
+      background: rgba(9, 11, 24, 0.65);
+      border: 1px solid rgba(147, 197, 253, 0.22);
       border-radius: 16px;
       padding: 16px;
       color: #f8fafc;
@@ -118,8 +136,8 @@
 
     textarea:focus {
       border-color: #8b5cf6;
-      box-shadow: 0 0 0 3px rgba(139,92,246,0.25);
-      background: rgba(9,11,24,0.85);
+      box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.25);
+      background: rgba(9, 11, 24, 0.85);
     }
 
     textarea::placeholder {
@@ -151,35 +169,35 @@
     .btn-primary {
       background: linear-gradient(135deg, #3b82f6, #8b5cf6);
       color: white;
-      box-shadow: 0 8px 20px rgba(99,102,241,0.35);
+      box-shadow: 0 8px 20px rgba(99, 102, 241, 0.35);
     }
 
     .btn-primary:hover {
-      box-shadow: 0 10px 26px rgba(139,92,246,0.55);
+      box-shadow: 0 10px 26px rgba(139, 92, 246, 0.55);
     }
 
     .btn-secondary {
-      background: rgba(255,255,255,0.08);
+      background: rgba(255, 255, 255, 0.08);
       color: #e2e8f0;
-      border: 1px solid rgba(255,255,255,0.15);
+      border: 1px solid rgba(255, 255, 255, 0.15);
     }
 
     .btn-secondary:hover {
-      background: rgba(255,255,255,0.15);
+      background: rgba(255, 255, 255, 0.15);
     }
 
     .bottom-section {
       margin-top: 28px;
       padding-top: 22px;
-      border-top: 1px solid rgba(255,255,255,0.1);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 14px;
     }
 
     .card-info {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 14px;
       padding: 14px 16px;
     }
@@ -217,8 +235,7 @@
           <span id="charCount">0 caracteres</span>
         </div>
 
-        <textarea id="inputBox"
-          placeholder='Cole seu script aqui... Ex: print("Olá Roblox!")'></textarea>
+        <textarea id="inputBox" placeholder='Cole seu script aqui... Ex: print("Olá Roblox!")'></textarea>
       </div>
 
       <div class="box-wrapper">
@@ -227,9 +244,7 @@
           <span id="statusBadge">Pronto</span>
         </div>
 
-        <textarea id="outputBox"
-          readonly
-          placeholder="O código obfuscado aparecerá aqui..."></textarea>
+        <textarea id="outputBox" readonly placeholder="O código obfuscado aparecerá aqui..."></textarea>
       </div>
 
     </section>
@@ -252,12 +267,12 @@
 
       <div class="card-info">
         <h3>● Pontos (1–9) & (+)</h3>
-        <p>Cada caractere vira pontos exatos. Acima de 9 ganha parênteses (...) e zero vira ().</p>
+        <p>Cada caractere vira pontos exatos. Acima de 9 ganha parênteses <code>(...)</code> e zero vira <code>()</code>.</p>
       </div>
 
       <div class="card-info">
         <h3>🛡️ Proteção Roblox</h3>
-        <p>Verifica DataModel, RunService e integridade C via debug.info antes de executar.</p>
+        <p>Verifica DataModel, RunService e integridade C via debug.info antes de rodar.</p>
       </div>
 
       <div class="card-info">
@@ -269,283 +284,210 @@
 
   </main>
 
-<script>
-"use strict";
+  <script>
+    const alfabeto = "aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ0123456789áÁàÀâÂãÃéÉêÊíÍóÓôÔõÕúÚçÇ´[]~{},.:;/?°-+=§\\|!@#$%&*()\"'_<>^ ";
 
-const alfabeto = "aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ0123456789áÁàÀâÂãÃéÉêÊíÍóÓôÔõÕúÚçÇ´[]~{},.:;/?°-+=§\\|!@#$%&*()\"'_<>^ ";
+    const inputBox = document.getElementById("inputBox");
+    const outputBox = document.getElementById("outputBox");
+    const charCount = document.getElementById("charCount");
+    const statusBadge = document.getElementById("statusBadge");
 
-const inputBox = document.getElementById("inputBox");
-const outputBox = document.getElementById("outputBox");
-const charCount = document.getElementById("charCount");
-const statusBadge = document.getElementById("statusBadge");
+    inputBox.addEventListener("input", () => {
+      charCount.textContent = `${[...inputBox.value].length} caracteres`;
+    });
 
-inputBox.addEventListener("input", () => {
-  charCount.textContent = `${[...inputBox.value].length} caracteres`;
-});
+    function nomeAleatorio() {
+      const chars = "lI1O0_abcdefXYZ";
+      let nome = "_";
+      const len = Math.floor(Math.random() * 7) + 8;
 
-function nomeAleatorio() {
-  const chars = "lI1O0_abcdefXYZ";
-  let nome = "_";
-  const len = Math.floor(Math.random() * 7) + 8;
+      for (let i = 0; i < len; i++) {
+        nome += chars[Math.floor(Math.random() * chars.length)];
+      }
 
-  for (let i = 0; i < len; i++) {
-    nome += chars[Math.floor(Math.random() * chars.length)];
-  }
+      return nome;
+    }
 
-  return nome;
-}
+    function gerarLixo() {
+      const v1 = nomeAleatorio();
+      const v2 = nomeAleatorio();
 
-function gerarLixo() {
-  const v1 = nomeAleatorio();
-  const v2 = nomeAleatorio();
+      const n1 = Math.floor(Math.random() * 9000) + 100;
+      const n2 = Math.floor(Math.random() * 48) + 2;
 
-  const n1 = Math.floor(Math.random() * 9000) + 100;
-  const n2 = Math.floor(Math.random() * 48) + 2;
+      const ptsFalsos = ".".repeat(
+        Math.floor(Math.random() * 15) + 3
+      );
 
-  const ptsFalsos = ".".repeat(
-    Math.floor(Math.random() * 15) + 3
-  );
+      return `local ${v1}=(${n1}*${n2})%7;if ${v1}==-999 then local ${v2}='(${ptsFalsos}) .. ...' end;`;
+    }
 
-  return `local ${v1}=(${n1}*${n2})%7;if ${v1}==-999 then local ${v2}='(${ptsFalsos}) .. ...' end;`;
-}
+    function paraPointring(texto) {
+      const mapa = new Map();
+      let idx = 0;
 
-function paraPointring(texto) {
-  const mapa = new Map();
-  let idx = 0;
+      for (const ch of alfabeto) {
+        idx++;
+        mapa.set(ch, idx);
+      }
 
-  for (const ch of alfabeto) {
-    idx++;
-    mapa.set(ch, idx);
-  }
+      const blocos = [];
 
-  const blocos = [];
+      for (const ch of texto) {
+        if (ch === "\n") {
+          blocos.push("()()()");
+        } else {
+          const pos = mapa.get(ch);
 
-  for (const ch of texto) {
-    if (ch === "\n") {
-      blocos.push("()()()");
-    } else {
-      const pos = mapa.get(ch);
+          if (pos) {
+            const pts = ".".repeat(pos);
+            blocos.push(pos > 9 ? `(${pts})` : pts);
+          } else {
+            blocos.push("()");
+          }
+        }
+      }
 
-      if (pos) {
-        const pts = ".".repeat(pos);
-        blocos.push(pos > 9 ? `(${pts})` : pts);
-      } else {
-        blocos.push("()");
+      return blocos.join(" ");
+    }
+
+    function escaparLuaString(str) {
+      return '"' + str
+        .replace(/\\/g, "\\\\")
+        .replace(/"/g, '\\"')
+        .replace(/\n/g, "\\n")
+        .replace(/\r/g, "\\r")
+        .replace(/\t/g, "\\t") + '"';
+    }
+
+    function fragmentarString(texto, varFinal, tam) {
+      const chars = [...texto];
+      const pedacos = [];
+
+      for (let i = 0; i < chars.length; i += tam) {
+        pedacos.push(chars.slice(i, i + tam).join(""));
+      }
+
+      const inst = [];
+      const vars = [];
+
+      for (const p of pedacos) {
+        const v = nomeAleatorio();
+
+        vars.push(v);
+        inst.push(`local ${v}=${escaparLuaString(p)};${gerarLixo()}`);
+      }
+
+      inst.push(`local ${varFinal}=${vars.join("..")};`);
+
+      return inst.join("");
+    }
+
+    function fragmentarPointring(payload, varFinal, porParte) {
+      const blocos = payload.split(" ").filter(Boolean);
+      const partes = [];
+
+      for (let i = 0; i < blocos.length; i += porParte) {
+        partes.push(blocos.slice(i, i + porParte).join(" "));
+      }
+
+      const inst = [];
+      const vars = [];
+
+      partes.forEach((parte, i) => {
+        const v = nomeAleatorio();
+
+        vars.push(v);
+
+        const txt = i < partes.length - 1
+          ? parte + " "
+          : parte;
+
+        inst.push(`local ${v}=${escaparLuaString(txt)};${gerarLixo()}`);
+      });
+
+      inst.push(`local ${varFinal}=${vars.join("..")};`);
+
+      return inst.join("");
+    }
+
+    function gerarApenasPontos() {
+      if (!inputBox.value) {
+        statusBadge.textContent = "Entrada vazia!";
+        return;
+      }
+
+      outputBox.value = paraPointring(inputBox.value);
+      statusBadge.textContent = "Pointring++ Gerado!";
+    }
+
+    function gerarLuau() {
+      if (!inputBox.value) {
+        statusBadge.textContent = "Entrada vazia!";
+        return;
+      }
+
+      try {
+        const payload = paraPointring(inputBox.value);
+
+        const vAlf = nomeAleatorio();
+        const vMap = nomeAleatorio();
+        const vPay = nomeAleatorio();
+
+        const vNums = nomeAleatorio();
+        const vOut = nomeAleatorio();
+        const vFn = nomeAleatorio();
+
+        const vCheck = nomeAleatorio();
+        const vIdx = nomeAleatorio();
+        const vCp = nomeAleatorio();
+
+        const vBloco = nomeAleatorio();
+        const vPts = nomeAleatorio();
+        const vN = nomeAleatorio();
+
+        const codAlf = fragmentarString(alfabeto, vAlf, 6);
+        const codPay = fragmentarPointring(payload, vPay, 4);
+
+        const final = `${gerarLixo()}local ${vCheck}=function()if typeof(game)~='Instance' or not game:IsA('DataModel') then return false end;if not workspace or not game:GetService('RunService') then return false end;if type(debug)~='table' or type(debug.info)~='function' then return false end;if type(loadstring)~='function' then return false end;if debug.info(string.rep,'s')~='[C]' or debug.info(loadstring,'s')~='[C]' then return false end;return true end;${gerarLixo()}if not ${vCheck}() then while true do task.wait(9e9) end end;${gerarLixo()}${codAlf}local ${vMap}={};local ${vIdx}=0;for _,${vCp} in utf8.codes(${vAlf}) do ${vIdx}+=1;${vMap}[${vIdx}]=utf8.char(${vCp}) end;${gerarLixo()}${codPay}local ${vNums}={};for ${vBloco} in ${vPay}:gmatch('%S+') do if ${vBloco}=='()()()' then table.insert(${vNums},-1) else local ${vPts}=${vBloco}:gsub('[%(%)]','');table.insert(${vNums},#${vPts}) end end;${gerarLixo()}local ${vOut}={};for _,${vN} in ipairs(${vNums}) do if ${vN}==-1 then table.insert(${vOut},'\\n') elseif ${vN}>0 and ${vMap}[${vN}] then table.insert(${vOut},${vMap}[${vN}]) end end;${gerarLixo()}local ${vFn}=loadstring(table.concat(${vOut}));if ${vFn} then ${vFn}() end;`;
+
+        // Resultado em uma única linha
+        outputBox.value = final.replace(/\r?\n/g, " ").trim();
+
+        statusBadge.textContent = "Luau Protegido!";
+
+      } catch (erro) {
+        console.error(erro);
+        statusBadge.textContent = "Erro ao gerar!";
+        outputBox.value = "Erro: " + erro.message;
       }
     }
-  }
 
-  return blocos.join(" ");
-}
+    async function copiarSaida() {
+      if (!outputBox.value) {
+        statusBadge.textContent = "Nada para copiar!";
+        return;
+      }
 
-function escaparLuaString(str) {
-  return '"' + str
-    .replace(/\\/g, "\\\\")
-    .replace(/"/g, '\\"')
-    .replace(/\n/g, "\\n")
-    .replace(/\r/g, "\\r")
-    .replace(/\t/g, "\\t") + '"';
-}
+      try {
+        await navigator.clipboard.writeText(outputBox.value);
+        statusBadge.textContent = "Copiado!";
+      } catch (erro) {
+        outputBox.focus();
+        outputBox.select();
 
-function fragmentarString(texto, varFinal, tam) {
-  const chars = [...texto];
-  const pedacos = [];
+        const sucesso = document.execCommand("copy");
 
-  for (let i = 0; i < chars.length; i += tam) {
-    pedacos.push(chars.slice(i, i + tam).join(""));
-  }
+        statusBadge.textContent = sucesso
+          ? "Copiado!"
+          : "Falha ao copiar!";
+      }
 
-  const inst = [];
-  const vars = [];
-
-  for (const p of pedacos) {
-    const v = nomeAleatorio();
-
-    vars.push(v);
-    inst.push(`local ${v}=${escaparLuaString(p)};${gerarLixo()}`);
-  }
-
-  inst.push(`local ${varFinal}=${vars.join("..")};`);
-
-  return inst.join("");
-}
-
-function fragmentarPointring(payload, varFinal, porParte) {
-  const blocos = payload.split(" ").filter(Boolean);
-  const partes = [];
-
-  for (let i = 0; i < blocos.length; i += porParte) {
-    partes.push(blocos.slice(i, i + porParte).join(" "));
-  }
-
-  const inst = [];
-  const vars = [];
-
-  partes.forEach((parte, i) => {
-    const v = nomeAleatorio();
-
-    vars.push(v);
-
-    const txt = i < partes.length - 1
-      ? parte + " "
-      : parte;
-
-    inst.push(`local ${v}=${escaparLuaString(txt)};${gerarLixo()}`);
-  });
-
-  inst.push(`local ${varFinal}=${vars.join("..")};`);
-
-  return inst.join("");
-}
-
-function gerarApenasPontos() {
-  if (!inputBox.value) {
-    statusBadge.textContent = "Entrada vazia!";
-    return;
-  }
-
-  outputBox.value = paraPointring(inputBox.value);
-  statusBadge.textContent = "Pointring++ Gerado!";
-}
-
-function gerarLuau() {
-  if (!inputBox.value) {
-    statusBadge.textContent = "Entrada vazia!";
-    return;
-  }
-
-  try {
-    const payload = paraPointring(inputBox.value);
-
-    const vAlf = nomeAleatorio();
-    const vMap = nomeAleatorio();
-    const vPay = nomeAleatorio();
-
-    const vNums = nomeAleatorio();
-    const vOut = nomeAleatorio();
-    const vFn = nomeAleatorio();
-
-    const vCheck = nomeAleatorio();
-    const vIdx = nomeAleatorio();
-    const vCp = nomeAleatorio();
-
-    const vBloco = nomeAleatorio();
-    const vPts = nomeAleatorio();
-    const vN = nomeAleatorio();
-
-    const codAlf = fragmentarString(
-      alfabeto,
-      vAlf,
-      6
-    );
-
-    const codPay = fragmentarPointring(
-      payload,
-      vPay,
-      4
-    );
-
-    const final = `
-${gerarLixo()}
-local ${vCheck}=function()
-if typeof(game)~='Instance' or not game:IsA('DataModel') then return false end;
-if not workspace or not game:GetService('RunService') then return false end;
-if type(debug)~='table' or type(debug.info)~='function' then return false end;
-if type(loadstring)~='function' then return false end;
-if debug.info(string.rep,'s')~='[C]' or debug.info(loadstring,'s')~='[C]' then return false end;
-return true
-end;
-
-${gerarLixo()}
-
-if not ${vCheck}() then
-while true do task.wait(9e9) end
-end;
-
-${gerarLixo()}
-
-${codAlf}
-
-local ${vMap}={}
-local ${vIdx}=0;
-
-for _,${vCp} in utf8.codes(${vAlf}) do
-${vIdx}+=1;
-${vMap}[${vIdx}]=utf8.char(${vCp})
-end;
-
-${gerarLixo()}
-
-${codPay}
-
-local ${vNums}={}
-
-for ${vBloco} in ${vPay}:gmatch('%S+') do
-if ${vBloco}=='()()()' then
-table.insert(${vNums},-1)
-else
-local ${vPts}=${vBloco}:gsub('[%(%)]','')
-table.insert(${vNums},#${vPts})
-end
-end;
-
-${gerarLixo()}
-
-local ${vOut}={}
-
-for _,${vN} in ipairs(${vNums}) do
-if ${vN}==-1 then
-table.insert(${vOut},'\\n')
-elseif ${vN}>0 and ${vMap}[${vN}] then
-table.insert(${vOut},${vMap}[${vN}])
-end
-end;
-
-${gerarLixo()}
-
-local ${vFn}=loadstring(table.concat(${vOut}))
-
-if ${vFn} then
-${vFn}() 
-end;
-`;
-
-    outputBox.value = final.replace(/\s+/g, " ").trim();
-    statusBadge.textContent = "Luau Protegido!";
-
-  } catch (erro) {
-    console.error(erro);
-    statusBadge.textContent = "Erro ao gerar!";
-    outputBox.value = "Erro: " + erro.message;
-  }
-}
-
-async function copiarSaida() {
-  if (!outputBox.value) {
-    statusBadge.textContent = "Nada para copiar!";
-    return;
-  }
-
-  try {
-    await navigator.clipboard.writeText(outputBox.value);
-    statusBadge.textContent = "Copiado!";
-
-  } catch (erro) {
-    outputBox.focus();
-    outputBox.select();
-
-    const sucesso = document.execCommand("copy");
-
-    statusBadge.textContent = sucesso
-      ? "Copiado!"
-      : "Falha ao copiar!";
-  }
-
-  setTimeout(() => {
-    statusBadge.textContent = "Pronto";
-  }, 2000);
-}
-</script>
+      setTimeout(() => {
+        statusBadge.textContent = "Pronto";
+      }, 2000);
+    }
+  </script>
 
 </body>
 </html>
