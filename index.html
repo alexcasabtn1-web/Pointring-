@@ -7,7 +7,6 @@
 
   <title>Obfuscador Pointring++</title>
 
-  <!-- Descrição do site -->
   <meta name="description" content="Misturando tudo para criar o melhor obfuscador. Conheça o Pointring++, o obfuscador de Luau para Roblox." />
 
   <!-- Discord Open Graph -->
@@ -15,8 +14,6 @@
   <meta property="og:title" content="Obfuscador Pointring++" />
   <meta property="og:description" content="Misturando tudo para criar o melhor obfuscador." />
   <meta property="og:url" content="https://alexcasabtn1-web.github.io/Pointring-/" />
-
-  <!-- Cor do preview -->
   <meta name="theme-color" content="#7c3aed" />
 
   <!-- Twitter -->
@@ -250,6 +247,7 @@
     </section>
 
     <div class="controls">
+
       <button class="btn-primary" onclick="gerarLuau()">
         ⚡ Obfuscar para Roblox (Luau)
       </button>
@@ -261,6 +259,7 @@
       <button class="btn-secondary" onclick="copiarSaida()">
         📋 Copiar Código
       </button>
+
     </div>
 
     <section class="bottom-section">
@@ -292,6 +291,9 @@
     const charCount = document.getElementById("charCount");
     const statusBadge = document.getElementById("statusBadge");
 
+    // Posição do número zero dentro do alfabeto
+    const zeroIndex = [...alfabeto].indexOf("0") + 1;
+
     inputBox.addEventListener("input", () => {
       charCount.textContent = `${[...inputBox.value].length} caracteres`;
     });
@@ -322,6 +324,7 @@
       return `local ${v1}=(${n1}*${n2})%7;if ${v1}==-999 then local ${v2}='(${ptsFalsos}) .. ...' end;`;
     }
 
+    // Conversão para Pointring++
     function paraPointring(texto) {
       const mapa = new Map();
       let idx = 0;
@@ -334,16 +337,34 @@
       const blocos = [];
 
       for (const ch of texto) {
-        if (ch === "\n") {
-          blocos.push("()()()");
-        } else {
+
+        // Quebra de linha
+        if (ch === "\n" || ch === "\r") {
+          if (ch === "\r") continue;
+          blocos.push("[]");
+        }
+
+        // Número zero
+        else if (ch === "0") {
+          blocos.push("()");
+        }
+
+        // Espaço
+        else if (ch === " ") {
+          blocos.push("{}");
+        }
+
+        // Outros caracteres
+        else {
           const pos = mapa.get(ch);
 
           if (pos) {
             const pts = ".".repeat(pos);
             blocos.push(pos > 9 ? `(${pts})` : pts);
           } else {
-            blocos.push("()");
+            throw new Error(
+              `Caractere não suportado pelo alfabeto: ${JSON.stringify(ch)}`
+            );
           }
         }
       }
@@ -411,16 +432,23 @@
       return inst.join("");
     }
 
+    // Apenas pontos
     function gerarApenasPontos() {
       if (!inputBox.value) {
         statusBadge.textContent = "Entrada vazia!";
         return;
       }
 
-      outputBox.value = paraPointring(inputBox.value);
-      statusBadge.textContent = "Pointring++ Gerado!";
+      try {
+        outputBox.value = paraPointring(inputBox.value);
+        statusBadge.textContent = "Pointring++ Gerado!";
+      } catch (erro) {
+        statusBadge.textContent = "Caractere inválido!";
+        outputBox.value = erro.message;
+      }
     }
 
+    // Obfuscação Luau
     function gerarLuau() {
       if (!inputBox.value) {
         statusBadge.textContent = "Entrada vazia!";
@@ -446,10 +474,19 @@
         const vPts = nomeAleatorio();
         const vN = nomeAleatorio();
 
-        const codAlf = fragmentarString(alfabeto, vAlf, 6);
-        const codPay = fragmentarPointring(payload, vPay, 4);
+        const codAlf = fragmentarString(
+          alfabeto,
+          vAlf,
+          6
+        );
 
-        const final = `${gerarLixo()}local ${vCheck}=function()if typeof(game)~='Instance' or not game:IsA('DataModel') then return false end;if not workspace or not game:GetService('RunService') then return false end;if type(debug)~='table' or type(debug.info)~='function' then return false end;if type(loadstring)~='function' then return false end;if debug.info(string.rep,'s')~='[C]' or debug.info(loadstring,'s')~='[C]' then return false end;return true end;${gerarLixo()}if not ${vCheck}() then while true do task.wait(9e9) end end;${gerarLixo()}${codAlf}local ${vMap}={};local ${vIdx}=0;for _,${vCp} in utf8.codes(${vAlf}) do ${vIdx}+=1;${vMap}[${vIdx}]=utf8.char(${vCp}) end;${gerarLixo()}${codPay}local ${vNums}={};for ${vBloco} in ${vPay}:gmatch('%S+') do if ${vBloco}=='()()()' then table.insert(${vNums},-1) else local ${vPts}=${vBloco}:gsub('[%(%)]','');table.insert(${vNums},#${vPts}) end end;${gerarLixo()}local ${vOut}={};for _,${vN} in ipairs(${vNums}) do if ${vN}==-1 then table.insert(${vOut},'\\n') elseif ${vN}>0 and ${vMap}[${vN}] then table.insert(${vOut},${vMap}[${vN}]) end end;${gerarLixo()}local ${vFn}=loadstring(table.concat(${vOut}));if ${vFn} then ${vFn}() end;`;
+        const codPay = fragmentarPointring(
+          payload,
+          vPay,
+          4
+        );
+
+        const final = `${gerarLixo()}local ${vCheck}=function()if typeof(game)~='Instance' or not game:IsA('DataModel') then return false end;if not workspace or not game:GetService('RunService') then return false end;if type(debug)~='table' or type(debug.info)~='function' then return false end;if type(loadstring)~='function' then return false end;if debug.info(string.rep,'s')~='[C]' or debug.info(loadstring,'s')~='[C]' then return false end;return true end;${gerarLixo()}if not ${vCheck}() then while true do task.wait(9e9) end end;${gerarLixo()}${codAlf}local ${vMap}={};local ${vIdx}=0;for _,${vCp} in utf8.codes(${vAlf}) do ${vIdx}+=1;${vMap}[${vIdx}]=utf8.char(${vCp}) end;${gerarLixo()}${codPay}local ${vNums}={};for ${vBloco} in ${vPay}:gmatch('%S+') do if ${vBloco}=='[]' then table.insert(${vNums},-1) elseif ${vBloco}=='{}' then table.insert(${vNums},-2) elseif ${vBloco}=='()' then table.insert(${vNums},${zeroIndex}) else local ${vPts}=${vBloco}:gsub('[%(%)]','');table.insert(${vNums},#${vPts}) end end;${gerarLixo()}local ${vOut}={};for _,${vN} in ipairs(${vNums}) do if ${vN}==-1 then table.insert(${vOut},'\\n') elseif ${vN}==-2 then table.insert(${vOut},' ') elseif ${vN}>0 and ${vMap}[${vN}] then table.insert(${vOut},${vMap}[${vN}]) end end;${gerarLixo()}local ${vFn}=loadstring(table.concat(${vOut}));if ${vFn} then ${vFn}() end;`;
 
         // Resultado em uma única linha
         outputBox.value = final.replace(/\r?\n/g, " ").trim();
@@ -463,6 +500,7 @@
       }
     }
 
+    // Copiar resultado
     async function copiarSaida() {
       if (!outputBox.value) {
         statusBadge.textContent = "Nada para copiar!";
@@ -472,6 +510,7 @@
       try {
         await navigator.clipboard.writeText(outputBox.value);
         statusBadge.textContent = "Copiado!";
+
       } catch (erro) {
         outputBox.focus();
         outputBox.select();
